@@ -35,10 +35,10 @@ export default function Calculator() {
                 case "-":
                     setResultado(a - b);
                     break;
-                case "X": // Multiplicação
+                case "X": 
                     setResultado(a * b);
                     break;
-                case "/": // Divisão
+                case "/": 
                     if (b !== 0) {
                         setResultado(a / b);
                     } else {

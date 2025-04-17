@@ -4,9 +4,8 @@ import React, { useState } from "react";
 export default function PasswordGenerator() {
     const [password, setPassword] = useState("");
 
-    // Função para gerar a senha
     const generatePassword = () => {
-        const length = 12; // Comprimento da senha
+        const length = 12; 
         const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
         let generatedPassword = "";
         for (let i = 0; i < length; i++) {
