@@ -28,5 +28,34 @@ export default function PasswordGenerator() {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#f5f5f5",
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: "bold",
+        marginBottom: 3,
 
-})
+    },
+    password: {
+        fontSize: 18,
+        marginVertical: 20,
+        color: "#000",
+        borderBlockEndColor: "#000",
+        borderBottomColor: "#000",
+        borderBottomWidth: 1,
+    },
+    button: {
+        backgroundColor: "#2196F3",
+        padding: 10,
+        borderRadius: 10,
+    },
+
+    buttonText: {
+        color: "#000",
+        fontSize: 16,
+    },
+});
