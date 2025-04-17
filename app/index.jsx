@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons"
 
 export default function HomeScreen() {
-    const navigation = useNavigation()
 
     return (
         <View style={styles.container}>

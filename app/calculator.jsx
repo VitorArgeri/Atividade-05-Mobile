@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, Pressable, TextInput } from "react-native";
 import React, { useState } from "react";
-import { useRouter } from "expo-router";
 
 export default function Calculadora() {
     const [numA, setNumA] = useState("");

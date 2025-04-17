@@ -32,7 +32,7 @@ export default function RootLayout({ }) {
                     }}
                 />
                 <Drawer.Screen
-                    name="calculator"
+                    name="calculadora"
                     options={{
                         drawerLabel: "Calculadora",
                         title: "Calculadora",
