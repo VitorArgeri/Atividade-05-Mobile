@@ -8,13 +8,6 @@ export default function HomeScreen() {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity
-                style={styles.menuButton}
-                onPress={() => navigation.openDrawer()}
-            >
-                <Ionicons name="menu" size={24} color="#333" />
-            </TouchableOpacity>
-
             <View style={styles.content}>
                 <Text style={styles.title}>Bem Vindo ao Site!</Text>
                 <Text style={styles.subtitle}>Aqui você encontrará um <strong>Contador</strong>, uma <strong>Calculadora</strong> e um <strong>Gerador de Senhas</strong></Text>
