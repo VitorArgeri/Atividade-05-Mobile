@@ -1,70 +1,111 @@
-import { View, Text, StyleSheet, Pressable, TextInput } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useState } from "react";
 
 export default function Calculator() {
     const [numA, setNumA] = useState("");
     const [numB, setNumB] = useState("");
-    const [resultado, setResultado] = useState("");
+    const [resultado, setResultado] = useState(null);
+    const [operator, setOperator] = useState(null);
 
-    const somar = () => {
-        if (numA && numB) {
-            setResultado(parseFloat(numA) + parseFloat(numB));
+    const handleNumberPress = (number) => {
+        if (operator === null) {
+            setNumA((prev) => prev + number);
         } else {
-            alert("Por favor, insira os números A e B.");
+            setNumB((prev) => prev + number);
         }
-    }
+    };
 
-    const subtrair = () => {
-        if (numA && numB) {
-            setResultado(parseFloat(numA) - parseFloat(numB));
+    const handleOperatorPress = (op) => {
+        if (numA) {
+            setOperator(op);
         } else {
-            alert("Por favor, insira os números A e B.");
+            alert("Por favor, insira o primeiro número.");
         }
-    }
+    };
 
-    const multiplicar = () => {
-        if (numA && numB) {
-            setResultado(parseFloat(numA) * parseFloat(numB));
-        } else {
-            alert("Por favor, insira os números A e B.");
-        }
-    }
+    const calculateResult = () => {
+        if (numA && numB && operator) {
+            const a = parseFloat(numA);
+            const b = parseFloat(numB);
 
-    const dividir = () => {
-        if (numA && numB) {
-            if (numB != 0) {
-                setResultado(parseFloat(numA) / parseFloat(numB));
-            } else {
-                alert("Divisão por zero não é permitida.");
+            switch (operator) {
+                case "+":
+                    setResultado(a + b);
+                    break;
+                case "-":
+                    setResultado(a - b);
+                    break;
+                case "X": // Multiplicação
+                    setResultado(a * b);
+                    break;
+                case "/": // Divisão
+                    if (b !== 0) {
+                        setResultado(a / b);
+                    } else {
+                        alert("Divisão por zero não é permitida.");
+                    }
+                    break;
+                default:
+                    alert("Operador inválido.");
             }
         } else {
-            alert("Por favor, insira os números A e B.");
+            alert("Por favor, complete a operação.");
         }
-    }
+    };
+
+    const clearCalculator = () => {
+        setNumA("");
+        setNumB("");
+        setOperator(null);
+        setResultado(null);
+    };
 
     return (
         <View style={styles.container}>
 
             <Text style={styles.title}>Calculadora</Text>
             <Text style={styles.subtitle}>Esta é a tela da calculadora.</Text>
-
             <View style={styles.calculatorContent}>
+                <View style={styles.numberContainer}>
+                    <View style={styles.resultContainer}>
+                        <Text style={{ fontSize: 24 }}>
+                            {resultado !== null ? resultado : `${numA} ${operator || ""} ${numB}`}
+                        </Text>
+                    </View>
+                    <View style={styles.setContainer}>
 
-                <View style={styles.inputContainer}>
-                    <TextInput id="numA" placeholder="Número A" keyboardType="numeric" style={styles.input} onChangeText={setNumA}/>
-                    <TextInput id="numB" placeholder="Número B" keyboardType="numeric" style={styles.input} onChangeText={setNumB}/>
+                        <View style={styles.calculatorContainer}>
+                            {[7, 8, 9, 4, 5, 6, 1, 2, 3, 0].map((num) => (
+                                <Pressable
+                                    key={num}
+                                    style={styles.number}
+                                    onPress={() => handleNumberPress(num.toString())}
+                                >
+                                    <Text>{num}</Text>
+                                </Pressable>
+                            ))}
+                            <Pressable style={styles.numberReset} onPress={clearCalculator}>
+                                <Text>Resetar</Text>
+                            </Pressable>
+                        </View>
+
+                        <View style={styles.operatorContainer}>
+                            {["+", "-", "X", "/"].map((op) => (
+                                <Pressable
+                                    key={op}
+                                    style={styles.operator}
+                                    onPress={() => handleOperatorPress(op)}
+                                >
+                                    <Text>{op}</Text>
+                                </Pressable>
+                            ))}
+                            <Pressable style={styles.operatorEquals} onPress={calculateResult}>
+                                <Text>=</Text>
+                            </Pressable>
+                        </View>
+
+                    </View>
                 </View>
-            </View>
-
-            <View style={styles.buttonsContainer}>
-                <Pressable id="btn" onPress={somar} style={styles.button}>Somar</Pressable>
-                <Pressable id="btn" onPress={subtrair} style={styles.button}>Subtrair</Pressable>
-                <Pressable id="btn" onPress={multiplicar} style={styles.button}>Multiplicar</Pressable>
-                <Pressable id="btn" onPress={dividir} style={styles.button}>Dividir</Pressable>
-            </View>
-
-            <View style={styles.resultContainer}>
-                <Text id="resultado" style={styles.resultText}>Resultado: {resultado}</Text>
             </View>
         </View>
     )
@@ -73,7 +114,8 @@ export default function Calculator() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
+        justifyContent: "align-items-center",
+        marginTop: 20,
         alignItems: "center",
         backgroundColor: "#f5f5f5",
     },
@@ -85,48 +127,80 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: "center",
     },
-    calculatorContent: {
-        flexDirection: "row",
-        alignItems: "center",
+    numberContainer: {
+        flexDirection: "collumn",
         justifyContent: "center",
-        marginTop: 20,
-        gap: 20,
-    },
-    inputContainer: {
-        flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
-        gap: 20,
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: "#ccc",
-        padding: 10,
-        borderRadius: 5,
-        width: 100,
-    },
-    buttonsContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 20,
-        gap: 20,
-    },
-    button: {
-        backgroundColor: "#2196F3",
-        padding: 10,
-        borderRadius: 5,
+        marginTop: 50
     },
     resultContainer: {
-        marginTop: 20,
-        backgroundColor: "#4CAF50",
-        padding: 10,
+        backgroundColor: "lightgrey",
+        padding: 20,
         borderRadius: 5,
-        width: "60%",
+        margin: 5,
+        width: "75%",
+        height: 80,
+        justifyContent: "center",
+        alignItems: "center",
     },
-    resultText: {
-        fontSize: 24,
-        fontWeight: "bold",
-        width: "100%"
+    setContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 30,
+        width: "100%",
+        marginRight: "7.5%"
     },
+    calculatorContainer: {
+        flexDirection: "row",
+        flexWrap: "Wrap",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "80%",
+        marginBottom: 85,
+    },
+    operatorContainer: {
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "20%",
+    },
+    operator: {
+        backgroundColor: "lightblue",
+        padding: 20,
+        borderRadius: 5,
+        margin: 5,
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: 20,
+    },
+    operatorEquals: {
+        backgroundColor: "orange",
+        padding: 20,
+        borderRadius: 5,
+        margin: 5,
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: 30,
+    },
+    number: {
+        backgroundColor: "lightgreen",
+        padding: 20,
+        borderRadius: 5,
+        margin: 5,
+        width: "25%",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    numberReset: {
+        backgroundColor: "lightgrey",
+        padding: 20,
+        borderRadius: 5,
+        margin: 5,
+        width: "53%",
+        justifyContent: "center",
+        alignItems: "center",
+    }
 })
