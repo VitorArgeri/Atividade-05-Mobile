@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#4CAF50",
         padding: 10,
         borderRadius: 5,
-        width: "15%",
+        width: "60%",
     },
     resultText: {
         fontSize: 24,
