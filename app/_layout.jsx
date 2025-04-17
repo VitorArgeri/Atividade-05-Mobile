@@ -44,7 +44,7 @@ export default function RootLayout({ }) {
                     }}
                 />
                 <Drawer.Screen
-                    name="passwordGerator"
+                    name="passwordGenerator"
                     options={{
                         drawerLabel: "Gerador de Senhas",
                         title: "Gerador de Senhas",
