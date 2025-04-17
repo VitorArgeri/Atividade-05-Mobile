@@ -43,6 +43,18 @@ export default function RootLayout({ }) {
                         ),
                     }}
                 />
+                <Drawer.Screen
+                    name="passwordGerator"
+                    options={{
+                        drawerLabel: "Gerador de Senhas",
+                        title: "Gerador de Senhas",
+                        headerShown: false,
+                        headerLeft: true,
+                        drawerIcon: ({ size, color }) => (
+                            <IonIcons name="key" size={size} color={color} />
+                        ),
+                    }}
+                />
             </Drawer>
         </GestureHandlerRootView>
     );
