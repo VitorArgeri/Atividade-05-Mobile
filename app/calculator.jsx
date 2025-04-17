@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Pressable, TextInput } from "react-native";
 import React, { useState } from "react";
 
-export default function Calculadora() {
+export default function Calculator() {
     const [numA, setNumA] = useState("");
     const [numB, setNumB] = useState("");
     const [resultado, setResultado] = useState("");

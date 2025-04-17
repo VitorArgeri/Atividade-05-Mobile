@@ -32,12 +32,12 @@ export default function RootLayout({ }) {
                     }}
                 />
                 <Drawer.Screen
-                    name="calculadora"
+                    name="calculator"
                     options={{
                         drawerLabel: "Calculadora",
                         title: "Calculadora",
-                        headerShown: false,
-                        headerLeft: true,
+                        // headerShown: false,
+                        // headerLeft: true,
                         drawerIcon: ({ size, color }) => (
                             <IonIcons name="calculator" size={size} color={color} />
                         ),
@@ -48,8 +48,8 @@ export default function RootLayout({ }) {
                     options={{
                         drawerLabel: "Gerador de Senhas",
                         title: "Gerador de Senhas",
-                        headerShown: false,
-                        headerLeft: true,
+                        // headerShown: false,
+                        // headerLeft: true,
                         drawerIcon: ({ size, color }) => (
                             <IonIcons name="key" size={size} color={color} />
                         ),

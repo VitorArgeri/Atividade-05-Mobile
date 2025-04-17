@@ -1,7 +1,4 @@
-import react from "react";
-import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import Ionicons from "react-native-vector-icons/Ionicons"
+import { View, Text, StyleSheet } from "react-native";
 
 export default function HomeScreen() {
 
