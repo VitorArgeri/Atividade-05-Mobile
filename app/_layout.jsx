@@ -1,6 +1,7 @@
 import { Drawer } from "expo-router/drawer";
 import IonIcons from "react-native-vector-icons/Ionicons";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 
 export default function RootLayout({ }) {
@@ -27,17 +28,17 @@ export default function RootLayout({ }) {
                         // headerShown: false,
                         // headerLeft: true,
                         drawerIcon: ({ size, color }) => (
-                            <IonIcons name="counter" size={size} color={color} />
+                            <MaterialCommunityIcons name="counter" size={size} color={color} />
                         ),
                     }}
                 />
                 <Drawer.Screen
-                    name="calculadora"
+                    name="calculator"
                     options={{
                         drawerLabel: "Calculadora",
                         title: "Calculadora",
-                        headerShown: false,
-                        headerLeft: true,
+                        // headerShown: false,
+                        // headerLeft: true,
                         drawerIcon: ({ size, color }) => (
                             <IonIcons name="calculator" size={size} color={color} />
                         ),
@@ -48,8 +49,8 @@ export default function RootLayout({ }) {
                     options={{
                         drawerLabel: "Gerador de Senhas",
                         title: "Gerador de Senhas",
-                        headerShown: false,
-                        headerLeft: true,
+                        // headerShown: false,
+                        // headerLeft: true,
                         drawerIcon: ({ size, color }) => (
                             <IonIcons name="key" size={size} color={color} />
                         ),
