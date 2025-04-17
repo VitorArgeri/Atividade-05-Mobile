@@ -28,5 +28,5 @@ export default function PasswordGenerator() {
 }
 
 const styles = StyleSheet.create({
-    
+
 })
