@@ -6,7 +6,6 @@ export default function Calculadora() {
     const [numA, setNumA] = useState("");
     const [numB, setNumB] = useState("");
     const [resultado, setResultado] = useState("");
-    const router = useRouter();
 
     const somar = () => {
         if (numA && numB) {
